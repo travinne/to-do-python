@@ -1,7 +1,9 @@
+from todolist import List
+
 class Menu:
 
     def __init__(self):
-        self.todo_list = list()
+        self.todo_list = List()
 
     def run(self):
         while True:
@@ -13,7 +15,7 @@ class Menu:
             print('5. Mark task as complete')
             print('6. Exit')
 
-            choice = input('choose one option')
+            choice = input('choose one option:')
 
             if choice == '1':
                 self.todo_list.add_user()
@@ -24,14 +26,14 @@ class Menu:
             elif choice == '4':
                 self.todo_list.list_tasks()
             elif choice == '5':
-                self.todo_list.mark_task_as_complete()
+                self.todo_list.mark_task_complete()
             elif choice == '6':
                 print('see you later!')
                 break
             else:
                 print('sorry invalid choice!')
 
-    if __name__ == '__main__':
-        Menu = Menu()
-        Menu.run()
-        pass
+if __name__ == '__main__':
+    Menu = Menu()
+    Menu.run()
+    
