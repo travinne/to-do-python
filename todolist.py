@@ -1,4 +1,4 @@
-class ToDoList:
+class List:
     def __init__(self):
         self.tasks = []
 
@@ -11,7 +11,7 @@ class ToDoList:
             return
         print("\nTo-Do List:")
         for i, task in enumerate(self.tasks, start=1):
-            status = "[✅]" if task["completed"] else "[ ]"
+            status = "[✓]" if task["completed"] else "[ ]"
             print(f"{i}. {status} {task['description']}")
 
     def mark_complete(self, task_number):
@@ -24,18 +24,19 @@ class ToDoList:
     def run(self):
         while True:
             print("\nOptions:")
-            print("1. Show Tasks")
-            print("2. Add Task")
+            print("1. Add Tasks")
+            print("2. show Tasks")
             print("3. Mark Task as Complete")
             print("4. Exit")
 
             choice = input("Choose an option (1-4): ")
 
+
             if choice == "1":
-                self.show_tasks()
-            elif choice == "2":
                 task = input("Enter task description: ")
                 self.add_task(task)
+            elif choice == "2":
+                self.show_tasks()
             elif choice == "3":
                 self.show_tasks()
                 try:
@@ -51,5 +52,5 @@ class ToDoList:
 
 
 if __name__ == "__main__":
-    todo = ToDoList()
+    todo =  List()
     todo.run()
