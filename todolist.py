@@ -45,7 +45,7 @@ class List:
         if not name:
             name = input('Enter category name:')
         self.cursor.execute("INSERT INTO categories (name) VALUES (?)", (name,))
-        self.conn.commit
+        self.conn.commit()
         print(f'category"{name}" added.')
 
 
@@ -74,14 +74,12 @@ class List:
         self.cursor.execute('INSERT INTO tasks(description,user_id, category_id) VALUES(?, ?, ?)',(description,user_id, category_id))
         self.conn.commit()
         print('Task added')
+        
 
     def list_tasks(self):
-         self.cursor.execute('''
-            SELECT tasks.id, tasks.description, tasks.completed, users.name, categories.name
-            FROM tasks
-            LEFT JOIN users ON tasks.user_id = users.id
-            LEFT JOIN categories ON tasks.category_id = categories.id
-        ''')
+                                    
+         self.cursor.execute("SELECT * FROM tasks")
+        
          tasks = self.cursor.fetchall()
 
          if not tasks:
@@ -94,7 +92,7 @@ class List:
 
     def mark_task_complete(self):
         task_id = int(input("Enter task ID to mark as complete: "))
-        self.cursor.execute('UPDATE tasks SET copmleted = 1 WHERE id = ?',(task_id))
+        self.cursor.execute('UPDATE tasks SET completed = 1 WHERE id = ?',(task_id,))
         if self.cursor.rowcount:
             self.conn.commit()
             print("Task marked as complete.")
